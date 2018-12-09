@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/style.css">
     <script src="/socket.io/socket.io.js"></script>
     <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -12,17 +13,26 @@
     </script>
     <title>Chat App</title>
 </head>
-<body>
-    <p>Page works</p>
+<body class="chat">
 
-    <ol id="chat_field"></ol>
+    <div class="chat__sidebar">
+        <h3>People</h3>
+        <div id="users"></div>
+    </div>
 
-    <form id="message_form">
-        <input type="text" name="text" id="message">
-        <button type="submit">Send</button>
-    </form>
-    <hr>
-    <button id="get_location">Send Location</button>
+    <div class="chat__main">
+        <ol id="chat_field"></ol>
+
+        <div class="chat__footer">
+            <form id="message_form">
+                <input type="text" placeholder="Message" name="text" id="message" autofocus autocomplete="off">
+                <button type="submit">Send</button>
+            </form>
+            <button id="get_location">Send location</button>
+        </div>
+    </div>
+
+
 
     <script src="/index.js"></script>
 </body>

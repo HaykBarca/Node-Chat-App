@@ -22,11 +22,13 @@ io.on('connection', (socket) => {
     socket.on('createMessage', (message, callback) => {
         io.emit('newMessage', generateMessage(message.from, message.text));
 
-        callback('This is from server: got it');
+        callback();
     });
 
-    socket.on('sendCurrentLocation', (message) => {
+    socket.on('sendCurrentLocation', (message, callback) => {
         io.emit('newLocationMessage', generateLocationMessage('Admin', message.latitude, message.longitude));
+
+        callback();
     });
 
     socket.on('disconnect', () => {

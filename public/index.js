@@ -33,7 +33,7 @@ $('#message_form').on('submit', function (event) {
         from: 'User',
         text: $('#message').val()
     }, function (data) {
-
+        $('#message').val('');
     });
 });
 
@@ -45,9 +45,15 @@ locationButton.on('click', function () {
             alert('Geolocation not supported by your browser');
         }
 
+        locationButton.attr('disabled', 'disabled');
+        locationButton.text('Sending location...');
+
         socket.emit('sendCurrentLocation', {
             latitude: location.coords.latitude,
             longitude: location.coords.longitude
+        }, function () {
+            locationButton.removeAttr('disabled');
+            locationButton.text('Send Location');
         });
     }, function (e) {
         console.log(e);
