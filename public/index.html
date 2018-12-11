@@ -22,7 +22,7 @@
     </div>
 
     <div class="chat__main">
-        <ol id="chat_field"></ol>
+        <ol id="messages" class="chat__messages"></ol>
 
         <div class="chat__footer">
             <form id="message_form">
@@ -33,8 +33,31 @@
         </div>
     </div>
 
-
-
+    <script id="message-template" type="text/template">
+        <li class="message">
+            <div class="message__title">
+                <h4>{{from}}</h4>
+                <span>{{createdAt}}</span>
+            </div>
+            <div class="message__body">
+                <p>{{text}}</p>
+            </div>
+        </li>
+    </script>
+    <script id="location-message-template" type="text/template">
+        <li class="message">
+            <div class="message__title">
+                <h4>{{from}}</h4>
+                <span>{{createdAt}}</span>
+            </div>
+            <div class="message__body">
+                <p>
+                    <a href="{{url}}" target="_blank">My Location</a>
+                </p>
+            </div>
+        </li>
+    </script>
+    <script src="./libs/mustache.min.js"></script>
     <script src="/index.js"></script>
 </body>
 </html>

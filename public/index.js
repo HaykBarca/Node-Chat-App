@@ -5,23 +5,27 @@ socket.on('connect', function () {
 });
 
 socket.on('newMessage', function (message) {
-    var formattedTime = moment(message.createdAt);
-    var li = $('<li></li>');
-    li.text(message.from + ' ' + formattedTime.format('h:mm a') + ' : ' + message.text);
-
-    $('#chat_field').append(li);
+    var formattedTime = moment(message.createdAt).format('h:mm a');
+    var template = $('#message-template').html();
+    var html = Mustache.render(template, {
+        text: message.text,
+        from: message.from,
+        createdAt: formattedTime
+    });
+    
+    $('#messages').append(html);
 });
 
 socket.on('newLocationMessage', function (message) {
-    var li = $('<li></li>');
-    var a = $('<a target="_blank">My Current position</a>');
-    var formattedTime = moment(message.createdAt);
-
-
-    li.text(message.from + ' ' + formattedTime.format('h:mm a') + ' : ');
-    a.attr('href', message.link);
-    li.append(a);
-    $('#chat_field').append(li);
+    var formattedTime = moment(message.createdAt).format('h:mm a');
+    var template = $('#location-message-template').html();
+    var html = Mustache.render(template, {
+        url: message.link,
+        from: message.from,
+        createdAt: formattedTime
+    });
+    
+    $('#messages').append(html);
 })
 
 socket.on('disconnect', function () {

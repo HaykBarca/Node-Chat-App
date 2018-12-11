@@ -120,7 +120,7 @@
     width: 100%;
   }
   
-  #chat_field {
+  #messages {
     flex-grow: 1;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
