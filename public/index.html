@@ -4,60 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/style.css">
-    <script src="/socket.io/socket.io.js"></script>
-    <script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-    <title>Chat App</title>
+    <title>Join | ChatApp</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="chat">
-
-    <div class="chat__sidebar">
-        <h3>People</h3>
-        <div id="users"></div>
+<body class="centered-form">
+    <div class="centered-form__form">
+        <form action="/chat.html">
+            <div class="form-field">
+                <h3>Join a chat</h3>
+            </div>
+            <div class="form-field">
+                <label for="disp">Display Name</label>
+                <input type="text" name="name" id="disp" autofocus>
+            </div>
+            <div class="form-field">
+                <label for="room">Room Name</label>
+                <input type="text" name="room" id="room">
+            </div>
+            <div class="form-field">
+                <button>Join</button>
+            </div>
+        </form>
     </div>
-
-    <div class="chat__main">
-        <ol id="messages" class="chat__messages"></ol>
-
-        <div class="chat__footer">
-            <form id="message_form">
-                <input type="text" placeholder="Message" name="text" id="message" autofocus autocomplete="off">
-                <button type="submit">Send</button>
-            </form>
-            <button id="get_location">Send location</button>
-        </div>
-    </div>
-
-    <script id="message-template" type="text/template">
-        <li class="message">
-            <div class="message__title">
-                <h4>{{from}}</h4>
-                <span>{{createdAt}}</span>
-            </div>
-            <div class="message__body">
-                <p>{{text}}</p>
-            </div>
-        </li>
-    </script>
-    <script id="location-message-template" type="text/template">
-        <li class="message">
-            <div class="message__title">
-                <h4>{{from}}</h4>
-                <span>{{createdAt}}</span>
-            </div>
-            <div class="message__body">
-                <p>
-                    <a href="{{url}}" target="_blank">My Location</a>
-                </p>
-            </div>
-        </li>
-    </script>
-    <script src="./libs/mustache.min.js"></script>
-    <script src="/index.js"></script>
+    
 </body>
 </html>
