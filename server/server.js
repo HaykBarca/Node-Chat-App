@@ -21,7 +21,7 @@ io.on('connection', (socket) => {
 
     socket.on('join', (params, callback) => {
         if (!isRealString(params.name) || !isRealString(params.room)) {
-            callback('Name and room name are required');
+            return callback('Name and room name are required');
         }
 
         socket.join(params.room);
@@ -36,13 +36,21 @@ io.on('connection', (socket) => {
 
 
     socket.on('createMessage', (message, callback) => {
-        io.emit('newMessage', generateMessage(message.from, message.text));
+        var user = users.getUser(socket.id);
+
+        if (user && isRealString(message.text)) {
+            io.to(user.room).emit('newMessage', generateMessage(user.name, message.text));
+        }
 
         callback();
     });
 
     socket.on('sendCurrentLocation', (message, callback) => {
-        io.emit('newLocationMessage', generateLocationMessage('Admin', message.latitude, message.longitude));
+        var user = users.getUser(socket.id);
+
+        if (user) {
+            io.to(user.room).emit('newLocationMessage', generateLocationMessage(user.name, message.latitude, message.longitude));
+        }
 
         callback();
     });

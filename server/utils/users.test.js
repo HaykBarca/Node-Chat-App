@@ -50,13 +50,13 @@ describe('Users', () => {
     it('should find a user', () => {
         var findUser = users.getUser(1);
 
-        expect(findUser).toEqual([{id: 1, name: 'Hayk', room: 'NodeCourse'}]);
+        expect(findUser).toEqual({id: 1, name: 'Hayk', room: 'NodeCourse'});
     });
 
     it('should not find a user', () => {
         var findUser = users.getUser(4);
 
-        expect(findUser).toEqual([]);
+        expect(typeof findUser).toBe("undefined");
     });
 
     it('should return the name of NodeCourse', () => {

@@ -20,7 +20,7 @@ class Users {
     getUser (id) {
         var userById = this.users.filter((user) => user.id === id);
 
-        return userById;
+        return userById[0];
     }
 
     getUserList (room) {

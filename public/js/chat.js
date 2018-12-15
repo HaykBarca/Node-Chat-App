@@ -75,7 +75,6 @@ $('#message_form').on('submit', function (event) {
     event.preventDefault();
 
     socket.emit('createMessage', {
-        from: 'User',
         text: $('#message').val()
     }, function (data) {
         $('#message').val('');
